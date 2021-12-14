@@ -59,7 +59,7 @@ app.post('/', function(req, res){
   if(data.list.find( record => record.username === name)){
     if(data.list.find( record => record.password === pass)){
       res.cookie("userData", obj);
-      res.render('home',{tittle: "express"})
+      res.render('blog',{tittle: "express"})
     }
   }
   else{
@@ -67,7 +67,7 @@ app.post('/', function(req, res){
   }
 });
 app.post('home',function(req,res){
-res.render('blog')
+res.render('blog',{tittle: "express"})
 });
 app.get('/logout', (req, res)=>{
 	//it will clear the userData cookie
