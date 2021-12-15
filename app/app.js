@@ -50,15 +50,15 @@ app.post('/', function(req, res){
 
   if(data.list.find( record => record.username === name)){
     if(data.list.find( record => record.password === pass)){
+      console.log('user found');
       res.cookie("userData", obj);
-      res.render('blog',{tittle: "express"})
+      res.render('home',{tittle: "express"})
     }
   }
   else{
     console.log('user not found!');
   }
 });
-<<<<<<< HEAD
 
 app.get('/home',function(req,res){
   res.render('home',{tittle: "express"})
@@ -86,11 +86,7 @@ app.post('/comment', function(req, res){
 
 app.get('/blog',function(req,res){
   res.render('blog',{tittle: "express"})
-=======
-app.post('home',function(req,res){
-res.render('blog',{tittle: "express"})
->>>>>>> cfde9cb00e6025407614a45253bad5d5a163b589
-});
+})
 
 app.get('/logout', (req, res)=>{
 	//it will clear the userData cookie
