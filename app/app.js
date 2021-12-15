@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var fs = require('fs');
+const { execPath } = require('process');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,7 +29,6 @@ main().catch(console.sever);
 var u = fs.readFileSync('users.json');
 var obj = JSON.parse(u);
 
-// console.log(obj.username);
 let data = {
   "list": [
     {username:"noha","password":"abc"},
@@ -36,9 +36,15 @@ let data = {
     {"username":"ahmed","password":"abc"}
 ]}
 
-let eps = ['Episode 1','Episode 2','Episode 3','Episode 4','Episode 5','Episode 6','Episode 7','Episode 8', 'Episode 9','Episode 10']
-  
-module.exports = eps;
+//for search and adding tiitles
+let tittles = ['Episode 1','Episode 2','Episode 3','Episode 4','Episode 5','Episode 6','Episode 7','Episode 8', 'Episode 9','Episode 10']
+
+//blog page omments
+let comments = ['good ',' very good',' bad ']
+
+module.exports = tittles;
+module.exports = comments;
+
 
 app.get('/', function(req, res){
 	res.render('index', {tittle: "express"})
@@ -66,17 +72,19 @@ app.get('/home',function(req,res){
 
 app.post('/add', function(req, res){
   let tittle = req.body.tittle;
+  tittles.push(tittle);  
+  res.send('tittle added successfully');
+  console.log(tittles);
 })
 
 app.post('/search', function(req, res){
   let catname = req.body.query;
-  if(eps.includes(catname)){
+  if(tittles.includes(catname)){
     console.log('found');
     res.send("found");
   } else{
     console.log('not found!');
     res.send("not found");
-
   }
 })
 
@@ -87,6 +95,28 @@ app.post('/comment', function(req, res){
 app.get('/blog',function(req,res){
   res.render('blog',{tittle: "express"})
 })
+
+app.post('/post', function(req, res){
+  let post = req.body.post;
+  if(comments.includes(post)){
+    res.send("could not add");
+  } else{
+    comments.push(post);
+    console.log(comments);
+    res.send("your comment is added successfully");
+  }
+})
+
+app.get('/reset_pass',function(req,res){
+  res.render('reset_pass',{tittle: "express"})
+})
+
+app.post('/reset_pass',function(req,res){
+
+  var username = req.body.name;
+  var newpassword = req.body.new_psw;
+
+});
 
 app.get('/logout', (req, res)=>{
 	//it will clear the userData cookie
