@@ -28,31 +28,23 @@ main().catch(console.sever);
 var u = fs.readFileSync('users.json');
 var obj = JSON.parse(u);
 
-console.log(obj.username);
-
+// console.log(obj.username);
 let data = {
   "list": [
     {username:"noha","password":"abc"},
     {"username":"shahenda","password":"abc"},
     {"username":"ahmed","password":"abc"}
- ]}
+]}
 
- for (var x in obj) {
-   if(obj[x].username =="noha"){
-    console.log('found')
- }
-}
-
-	app.get('/', function(req, res){
-		res.render('index', {tittle: "express"})
-	  });
-//     app.get('/', function(req, res){
-// 	res.cookie("userData", obj);
-// 	res.send('user data added to cookie')
-//   alert("cookie saved")
-// });
-app.post('/', function(req, res){
+let eps = ['Episode 1','Episode 2','Episode 3','Episode 4','Episode 5','Episode 6','Episode 7','Episode 8', 'Episode 9','Episode 10']
   
+module.exports = eps;
+
+app.get('/', function(req, res){
+	res.render('index', {tittle: "express"})
+});
+
+app.post('/', function(req, res){
   var name = req.body.username;
   var pass = req.body.password;
 
@@ -66,14 +58,40 @@ app.post('/', function(req, res){
     console.log('user not found!');
   }
 });
-app.post('home',function(req,res){
-res.render('blog')
+
+app.get('/home',function(req,res){
+  res.render('home',{tittle: "express"})
 });
+
+app.post('/add', function(req, res){
+  let tittle = req.body.tittle;
+})
+
+app.post('/search', function(req, res){
+  let catname = req.body.query;
+  if(eps.includes(catname)){
+    console.log('found');
+    res.send("found");
+  } else{
+    console.log('not found!');
+    res.send("not found");
+
+  }
+})
+
+app.post('/comment', function(req, res){
+  res.render('blog',{tittle: "express"})
+})
+
+app.get('/blog',function(req,res){
+  res.render('blog',{tittle: "express"})
+});
+
 app.get('/logout', (req, res)=>{
 	//it will clear the userData cookie
 	res.clearCookie('userData');
 	res.send('user logout successfully');
-	});
+});
 
 
 app.listen(3000)
