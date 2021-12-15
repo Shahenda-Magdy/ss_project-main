@@ -75,5 +75,11 @@ app.get('/logout', (req, res)=>{
 	res.send('user logout successfully');
 	});
 
+if(process.env.PORT){
+  app.listen(process.env.PORT, function() {console.log('Server started')});
 
+}
+else{
+  app.listen(process.env.PORT, function() {console.log("Server started on port 3000")})
+}
 app.listen(3000)
