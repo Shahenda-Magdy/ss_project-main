@@ -51,13 +51,14 @@ app.post('/', function(req, res){
   if(data.list.find( record => record.username === name)){
     if(data.list.find( record => record.password === pass)){
       res.cookie("userData", obj);
-      res.render('home',{tittle: "express"})
+      res.render('blog',{tittle: "express"})
     }
   }
   else{
     console.log('user not found!');
   }
 });
+<<<<<<< HEAD
 
 app.get('/home',function(req,res){
   res.render('home',{tittle: "express"})
@@ -85,6 +86,10 @@ app.post('/comment', function(req, res){
 
 app.get('/blog',function(req,res){
   res.render('blog',{tittle: "express"})
+=======
+app.post('home',function(req,res){
+res.render('blog',{tittle: "express"})
+>>>>>>> cfde9cb00e6025407614a45253bad5d5a163b589
 });
 
 app.get('/logout', (req, res)=>{
@@ -93,5 +98,11 @@ app.get('/logout', (req, res)=>{
 	res.send('user logout successfully');
 });
 
+if(process.env.PORT){
+  app.listen(process.env.PORT, function() {console.log('Server started')});
 
+}
+else{
+  app.listen(process.env.PORT, function() {console.log("Server started on port 3000")})
+}
 app.listen(3000)
