@@ -25,47 +25,50 @@ async function main(){
 main().catch(console.sever);
 
 // users
-var u = fs.readFileSync('users.json');
-var obj = JSON.parse(u);
+// var u = fs.readFileSync('users.json');
+// var obj = JSON.parse(u);
 
-console.log(obj.username);
+// console.log(obj.username);
 
-let data = {
-  "list": [
-    {username:"noha","password":"abc"},
-    {"username":"shahenda","password":"abc"},
-    {"username":"ahmed","password":"abc"}
- ]}
+// let data = {
+//   "list": [
+//     {username:"noha","password":"abc"},
+//     {"username":"shahenda","password":"abc"},
+//     {"username":"ahmed","password":"abc"}
+//  ]}
 
- for (var x in obj) {
-   if(obj[x].username =="noha"){
-    console.log('found')
- }
-}
+//  for (var x in obj) {
+//    if(obj[x].username =="noha"){
+//     console.log('found')
+//  }
+// }
 
 	app.get('/', function(req, res){
-		res.render('index', {tittle: "express"})
+		res.render('register', {tittle: "express"})
 	  });
 //     app.get('/', function(req, res){
 // 	res.cookie("userData", obj);
 // 	res.send('user data added to cookie')
 //   alert("cookie saved")
 // });
-app.post('/', function(req, res){
-  
-  var name = req.body.username;
-  var pass = req.body.password;
-
-  if(data.list.find( record => record.username === name)){
-    if(data.list.find( record => record.password === pass)){
-      res.cookie("userData", obj);
-      res.render('blog',{tittle: "express"})
-    }
-  }
-  else{
-    console.log('user not found!');
-  }
+    app.post('/register', function(req, res){
+	res.render('home',{tittle: "express"})
 });
+// app.post('/', function(req, res){
+  
+//   var name = req.body.username;
+//   var pass = req.body.password;
+
+//   if(data.list.find( record => record.username === name)){
+//     if(data.list.find( record => record.password === pass)){
+//       res.cookie("userData", obj);
+//       res.render('blog',{tittle: "express"})
+//     }
+//   }
+//   else{
+//     console.log('user not found!');
+//   }
+// });
 app.post('home',function(req,res){
 res.render('blog',{tittle: "express"})
 });
@@ -82,4 +85,5 @@ if(process.env.PORT){
 else{
   app.listen(process.env.PORT, function() {console.log("Server started on port 3000")})
 }
+
 app.listen(3000)
