@@ -5,39 +5,60 @@
    </script>
    <head>
       <title> Hacko website</title>
+      <style>
+         input[type=text], input[type=search] {   
+            width: 20%;   
+            margin: 8px 0;  
+            padding: 12px 20px;   
+            display: inline-block;   
+            border: 2px solid green;   
+            box-sizing: border-box;   
+        }  
+        form {
+        text-align: right;
+       }
+        button {   
+           width: 15%;  
+            padding: 15px;   
+            margin: 10px 0px;   
+            border: none;   
+            cursor: pointer;   
+         } 
+      </style>
+      <center> <img src="head.jpg" alt="welcomeouruser" width="550" height="110"> </center>   
+
    </head>
-<style>
-   body{
-      background-image: url("welcomeouruser.jpg");
-      background-repeat: no-repeat;
-      background-size: 100%;
-   }
-
-     
-</style>
-   <body>
-      Welcome our user!
-      <!-- <img src="no thismovie.jpg" alt="this movie not available" width="200" height="80"> -->
-   </body> 
 
    <body>
-      <form>
-      <button onclick="window.location.href='http:localhost:3000/movies';">add</button>
-      </form>
-   </body>
-
-   <body>
-      <form>
-         <input type="search" id="query" name="q" placeholder="Search...">
+      <!-- <center> <img src="head.jpg" alt="welcomeouruser" width="550" height="110"> </center>    -->
+      <a href="blog">Go to my Blog</a>
+      <br></br>
+      <p style="font-family:courier;">
+         Disney was born on December 5, 1901, in the Hermosa section of Chicago, <br>
+         Illinois. He lived most of his childhood in Marceline, Missouri, where he began drawing,<br>
+         and selling pictures to neighbors and family friends. In 1911,<br>
+         his family moved to Kansas City, where Disney developed a love for trains.<br>
+      </p>
+      <form action='/search' method=POST>
+         <input type="search" id="query" name="query" placeholder="Search...">
          <button onclick="search_animal()">Search</button>
-     
       </form>
-   
-   </body>
-
-   <body>
-      <form method="get" action="/blog" >
-         <input type="submit" value="add Comment" />
+      <form action='/add' method=POST>
+         <input type="text" id="tittle" name="tittle" placeholder="Add tittle...">
+         <button>Add</button>
       </form>
+      <form action='/comment' method=POST>
+         <!-- <input type="text" id="comment" name="comment" placeholder="Add Comment..."> -->
+         <button>Comment</button>
+         <div class="container1">
+            <img id="image" src="/th.jpg">
+            <br>
+            <label id="label1">Raya and the last dragon</label>
+            </div>
+            <div class="container2">
+              <img id="image" src="/th (1).jpg">
+              <br>
+              <label id="label2">Avatar</label>
+              </div>
    </body>
 </html> 

@@ -1,14 +1,41 @@
 <!DOCTYPE html>
 <html>
+   <script>
+      alert("cookie is sent");
+   </script>
    <head>
-      <title> Movies Blog</title>
+      <title>Blog</title>
+      <style>
+         input[type=text], input[type=search] {   
+            width: 20%;   
+            margin: 8px 0;  
+            padding: 12px 20px;   
+            display: inline-block;   
+            border: 2px solid green;   
+            box-sizing: border-box;   
+        }  
+        form {
+        text-align: right;
+       }
+        button {   
+           width: 15%;  
+            padding: 15px;   
+            margin: 10px 0px;   
+            border: none;   
+            cursor: pointer;   
+         } 
+      </style>
    </head>
+   <body>
    Movies Blog
-   <form method="dialog">
-    Comments:<br />
-    <input type="text" name="comment" style="height:120px; width:200px;">
-    <input type="submit" value="Submit" />
-   </form\>
+   </body>
+   <body>
+   <a href="home">Back to my Home</a>
+   <form action='/post' method=POST>
+      <input type="search" id="post" name="post" placeholder="Post...">
+      <button onclick="search_animal()">Post</button>
+   </form>
+   </body>
 </html>
 
 
