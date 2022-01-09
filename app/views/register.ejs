@@ -1,34 +1,60 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title><%= title %></title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>JavaScript Form Validation using a sample registration form</title>
+<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />
+<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />
+<link rel='stylesheet' href='js-form-validation.css' type='text/css' />
+<!-- <script src="sample-registration-form-validation.js"></script> -->
 </head>
-<body>
-<% if (messages.error) { %>
-<p style="color:red"><%- messages.error %></p>
-<% } %>
-<% if (messages.success) { %>
-<p style="color:green"><%- messages.success %></p>
-<% } %>
-<form action="/auth/post-register" method="post" name="form1">
-<div class="form-group">
-<label for="exampleInputEmail1">Name</label>
-<input type="name" name="name" class="form-control" id="name" aria-describedby="nameHelp" placeholder="Enter name" value="">
-</div>   
-<div class="form-group">
-<label for="exampleInputEmail1">Email</label>
-<input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="">
-</div>
-<div class="form-group">
-<label for="exampleInputEmail1">Password</label>
-<input type="password" name="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="*********" value="">
-</div>
-<input type="submit" class="btn btn-primary" value="Add">
-<a href="auth/login" class="btn btn-success ml-2">Login</a>
+<!-- <body onload="document.registration.userid.focus();"> -->
+<h1>Registration Form</h1>
+Use tab keys to move from one input field to the next.
+<!-- <form name='registration' onSubmit="return formValidation();"> -->
+<!-- <ul> -->
+<li><label for="name">User name:</label></li>
+<form action='/name' method=POST>
+<input type="text" name="name" size="12" />
+</form>
+<li><label for="passid">Password:</label></li>
+<form action='/password' method=POST>
+<input type="password" name="password" size="12" />
+</form>
+<!-- <li><label for="username">Name:</label></li>
+<li><input type="text" name="username" size="50" /></li> -->
+<!-- <li><label for="address">Address:</label></li>
+<li><input type="text" name="address" size="50" /></li>
+<li><label for="country">Country:</label></li>
+<li><select name="country">
+<option selected="" value="Default">(Please select a country)</option>
+<option value="AF">Australia</option>
+<option value="AL">Canada</option>
+<option value="DZ">India</option>
+<option value="AS">Russia</option>
+<option value="AD">USA</option> -->
+<!-- </select></li> -->
+<!-- <li><label for="zip">ZIP Code:</label></li>
+ <li><input type="text" name="zip" /></li> -->
+<li><label for="email">Email:</label></li>
+<form action= '/isEmailValid' method="post">
+<li><input type="text" name="email" size="50" /></li>
+</form>
+<!-- <li><label id="gender">Sex:</label></li>
+<li><input type="radio" name="msex" value="Male" /><span>Male</span></li>
+<li><input type="radio" name="fsex" value="Female" /><span>Female</span></li>  -->
+ <!-- <li><label>Language:</label></li>
+<li><input type="checkbox" name="en" value="en" checked /><span>English</span></li>
+<li><input type="checkbox" name="nonen" value="noen" /><span>Non English</span></li>
+<li><label for="desc">About:</label></li>
+<li><textarea name="desc" id="desc"></textarea></li> -->
+<form method="post" action="/step2">
+<input type="tel" name="no"/>
+<input type="submit" value="send code"/>
+</form>
+<form action="register" method="post">
+<input type="submit" name="submit" value="Submit" /></form>
+</ul>
+<a href="login">login? </a>  
 </form> 
 </body>
 </html>

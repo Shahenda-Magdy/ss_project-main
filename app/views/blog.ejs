@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-   <script>
+   <!-- <script>
       alert("cookie is sent");
-   </script>
+   </script> -->
    <head>
       <title>Blog</title>
       <style>
@@ -31,16 +31,28 @@
    </body>
    <body>
    <a href="home">Back to my Home</a>
-   <form action='/post' method=POST>
-      <input type="search" id="post" name="post" placeholder="Post...">
-      <button onclick="search_animal()">Post</button>
+   <form action='/post' method=get>
    </form>
-   <form  action="/logout" method=post>
-      <button >Log out</button>
+   <form action='/logout' method=get>
+      <!-- <input type="text" id="logout" name="logout placeholder="Add tittle..."> -->
+      <button>Logout</button>
    </form>
+
+   </form>
+\
+   <h2>Comments :     </h2>
+   <span id="results"> </span>
+   <form action='/add_comment' method=POST>
+      <input type="text" id="comment" name="comment" placeholder="Add comment...">
+      <button value="Submit" onClick="postcom()"">Comment</button>
+   </form>
+   <script>
+      function postcom() {
+      document.getElementById("results").innerHTML = document.getElementById('comment').value;
+      }
+ </script>
    </body>
 </html>
-
 
 
 

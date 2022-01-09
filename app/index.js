@@ -12,9 +12,6 @@ const path = require("path")
 // Setting up the server
 var app = express()
 
-// Creating session
-
-
 // Server setup
 app.listen(3000, () => {
 	console.log("Server is Starting")
