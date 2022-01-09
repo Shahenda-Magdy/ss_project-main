@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-   <script>
+   <!-- <script>
       alert("cookie is sent");
-   </script>
+   </script> -->
    <head>
       <title>Blog</title>
       <style>
@@ -31,6 +31,14 @@
    </body>
    <body>
    <a href="home">Back to my Home</a>
+   <form action='/post' method=get>
+   </form>
+   <form action='/logout' method=get>
+      <!-- <input type="text" id="logout" name="logout placeholder="Add tittle..."> -->
+      <button>Logout</button>
+   </form>
+
+   </form>
    <form action='/post' method=POST>
       <input type="search" id="post" name="post" placeholder="Post...">
       <button onclick="search_animal()">Post</button>
