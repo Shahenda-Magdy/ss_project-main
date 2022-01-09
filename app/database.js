@@ -3,7 +3,7 @@ var conn = mysql.createConnection({
   host: 'localhost', // assign your host name
   user: 'root',      //  assign your database username
   password: '',      // assign your database password
-  database: 'nodeapp' // assign database Name
+  database: 'myapp' // assign database Name
 }); 
 // conn.connect(function(err) {
 //   if (err) throw err;

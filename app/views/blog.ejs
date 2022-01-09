@@ -39,12 +39,25 @@
    </form>
 
    </form>
-   <form action='/post' method=POST>
-      <input type="search" id="post" name="post" placeholder="Post...">
-      <button onclick="search_animal()">Post</button>
+
+   <h2>Comments :     </h2>
+   <span id="results"> </span>
+   <form action='/add_comment' method=POST>
+      <input type="text" id="comment" name="comment" placeholder="Add comment...">
+      <button value="Submit" onClick="postcom()">Comment</button>
    </form>
+   <script>
+      function postcom() {
+      document.getElementById("results").innerHTML = document.getElementById('comment').value;
+      }
+ </script>
    </body>
 </html>
+
+
+
+
+
 
 
 

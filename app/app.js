@@ -16,7 +16,6 @@ var db=require('./database');
 // var logger = require('morgan');
 
 // var exphbs=require('express-handlebars')
-var meassagebird=require('messagebird')
 // var expressValidator = require('express-validator');
 // var flash = require('express-flash');
 // var session = require('express-session');
@@ -134,7 +133,8 @@ res.render('blog',{tittle: "express"})
 app.get('/login', function(req, res){
   res.render('login',{tittle: "express"})
 });
-app.use("/cookies", (req, res) => {
+app.post("/cookies", (req, res) => {
+  key=req.body.username; Secure; HttpOnly; 
   res.cookie('sessionId', sessions, {
     secure: true,
     httpOnly: true,
@@ -150,8 +150,9 @@ app.post('/login', function(request, response) {
 	var username = request.body.username;
 	var password = request.body.password;
 	if (username && password) {
-		connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results!=0) {
+		db.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+      console.log(passwords)
+	  if (passwords.includes(password)) {
         // response.writeHead(200, {
         //   "Set-Cookie": "token=encryptedstring; HttpOnly",
         //   "Access-Control-Allow-Credentials": "true"
@@ -184,8 +185,9 @@ app.post('/reset_pass',function(req,res){
   inputData ={
   username :req.body.username,
   newpassword: req.body.new_psw}
-  var sql='SELECT * FROM registration WHERE username=?';
+  var sql='SELECT * FROM registration WHERE username=?AND password = ?';
 db.query(sql, [inputData.username] ,function (err, data, fields) {
+  passwords.push(inputData.newpassword)
 // if(data.length>1){
 //  var msg = inputData.email+ "was already exist";
 // }else if(inputData.confirm_password != inputData.password){
@@ -255,7 +257,7 @@ let tittles = ['Episode 1','Episode 2','Episode 3','Episode 4','Episode 5','Epis
 
 //blog page omments
 let comments = ['good ',' very good',' bad ']
-
+let passwords=['123']
 module.exports = tittles;
 module.exports = comments;
 
@@ -267,10 +269,17 @@ app.get('/home',function(req,res){
 
 app.post('/add', function(req, res){
   let tittle = req.body.tittle;
+  res.send("title added successfully")
   tittles.push(tittle);  
-  res.send('tittle added successfully');
   console.log(tittles);
 })
+
+app.post('/add_comment', function(req, res){
+  let comment = req.body.comment;
+  comments.push(comment);  
+  res.send(comments)
+})
+
 
 app.post('/search', function(req, res){
   let catname = req.body.query;
@@ -428,7 +437,7 @@ app.get('/post', function(req, res){
 // }
 // function ValidateEmail(uemail)
 // {
-// var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+// var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
 // if(uemail.value.match(mailformat))
 // {
 // return true;
@@ -500,10 +509,10 @@ app.post('/isEmailValid',function(req,res){
     if(!isEmailValid(email))
     res.send("Wrong mail")
 })
-var emailRegex = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+var emailRegex = /^[-!#$%&'+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'+\/0-9=?A-Z^_a-z`{|}~])@[a-zA-Z0-9](-\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
 
 function isEmailValid(email) {
-  var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  var mailformat = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
   if(email.match(mailformat))
   {
   return true;
@@ -536,28 +545,30 @@ function submit(){
   return false;
 
 }
+
 app.post('/register',function(req,res){
   inputData ={
     name:req.body.name,
     password:req.body.password,
     email:req.body.email
   }
-var sql='SELECT * FROM registration WHERE email_address =?';
-db.query(sql, [inputData.email] ,function (err, data, fields) {
-if(data.length>1){
+var sql='SELECT * FROM registration WHERE username =?';
+db.query(sql, [inputData.name] ,function (err, data, fields) {
+if(data!=1){
  var msg = inputData.email+ "was already exist";
-}else if(inputData.confirm_password != inputData.password){
-var msg ="Password & Confirm Password is not Matched";
+ passwords.push(inputData.password)
+// }else if(inputData.confirm_password != inputData.password){
+// var msg ="Password & Confirm Password is not Matched";
 }else{
  
 // save users data into database
 var sql = 'INSERT INTO registration SET ?';
 db.query(sql, inputData, function (err, data) {
-       });
-var msg ="Your are successfully registered";}}),
-res.render('home',{tittle: "express"})
+       })};
+// var msg ="Your are successfully rgistered";
+res.redirect('login')
 
-})
+})})
   
 
 app.listen(3000)
