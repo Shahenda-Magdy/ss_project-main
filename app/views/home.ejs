@@ -31,35 +31,30 @@
       <br></br>
       <p style="font-family:courier;">
          Disney was born on December 5, 1901, in the Hermosa section of Chicago, <br>
-         Illinois. He lived most of his childhood in Marceline, Missouri, where he began drawing,<br>
-         and selling pictures to neighbors and family friends. In 1911,<br>
-         his family moved to Kansas City, where Disney developed a love for trains.<br>
       </p>
       <form action='/search' method=POST>
          <input type="search" id="query" name="query" placeholder="Search...">
          <button onclick="search_animal()">Search</button>
       </form>
+      <h2>Tittles :     </h2>
+         <span id="result"> </span>
       <form action='/add' method=POST>
          <input type="text" id="tittle" name="tittle" placeholder="Add tittle...">
-         <button>Add</button>
+         <button value="Submit" onClick="add()"">Add</button>
       </form>
+      <script>
+         function add() {
+           document.getElementById("result").innerHTML = document.getElementById('tittle').value;
+         }
+       </script>
       <form action='/comment' method=POST>
          <!-- <input type="text" id="comment" name="comment" placeholder="Add Comment..."> -->
          <button>Comment</button>
-         <div class="container1">
-            <img id="image" src="/th.jpg">
-            <br>
-            <label id="label1">Raya and the last dragon</label>
-            </div>
-            <div class="container2">
-              <img id="image" src="/th (1).jpg">
-              <br>
-              <label id="label2">Avatar</label>
-              </div>
-              </form>
-              <form action='/logout' method=get>
+        
+      </form>
+      <form action='/logout' method=get>
                <!-- <input type="text" id="logout" name="logout placeholder="Add tittle..."> -->
                <button>Logout</button>
-            </form>
+      </form>
    </body>
-</html> 
+</html>
